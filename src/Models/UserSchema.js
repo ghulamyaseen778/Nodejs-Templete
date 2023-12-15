@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const UserSchema = mongoose.Schema(
   {
-    Name: {
+    name: {
       type: String,
       required: true,
     },
@@ -14,13 +14,24 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    profilePhoto: {
-      type: String,
+    role: {
+      type: String, 
       required: true,
+      enum: ["admin", "manger","sub"],
     },
-    isAdmin: {
-      type: Boolean,
-      default: false,
+    acsses: {
+      type: [String],
+      enum: [
+        "course",
+        "module",
+        "batch",
+        "course-action",
+        "module-action",
+        "batch-action",
+        "check-student",
+        "pay-btn",
+      ],
+      // create-courses,create-modules,create-batch,action-on-courses,action-on-modules,action-batch,check-student
     },
   },
   {
