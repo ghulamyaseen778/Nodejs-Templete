@@ -8,9 +8,9 @@ const errHandler = (res,err,status) =>{
     console.log(typeof err)
     res.status(status)
     if(typeof err=="string"){
-        res.json({err})
+        res.send({error:err})
     }else{
-        res.json({err:errList[err]})
+        res.send({error:errList[err]})
         
     }
 }

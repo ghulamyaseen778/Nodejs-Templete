@@ -30,6 +30,7 @@ const UserSchema = mongoose.Schema(
         "batch-action",
         "check-student",
         "pay-btn",
+        "all"
       ],
       // create-courses,create-modules,create-batch,action-on-courses,action-on-modules,action-batch,check-student
     },

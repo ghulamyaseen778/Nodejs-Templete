@@ -35,7 +35,6 @@ const CourseSchema = mongoose.Schema({
   },
   moduleLength: {
     type: Number,
-    required: true,
     default: 1,
   },
   moduleIds: {
@@ -48,10 +47,10 @@ const CourseSchema = mongoose.Schema({
   rating: {
     type: Number,
   },
-  category:{
+  category: {
     type: String,
-    required: true,
-  }
+    // required: true,
+  },
 });
 
 const ModuleSchema = mongoose.Schema({
@@ -59,21 +58,21 @@ const ModuleSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  courseId:{
+  courseId: {
     type: String,
     required: true,
   },
-  duration:{
-    type:String,
+  duration: {
+    type: String,
   },
-  title:{
-    type:String,
-    required:true
+  title: {
+    type: String,
+    required: true,
   },
-  curriculum:{
-    type:Array,
-    required:true
-  }
+  curriculum: {
+    type: Array,
+    required: true,
+  },
 });
 
 const BatchSchema = mongoose.Schema({
@@ -81,47 +80,60 @@ const BatchSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  courseId:{
+  courseId: {
     type: String,
     required: true,
   },
-  moduleId:{
+  moduleId: {
     type: String,
     required: true,
   },
-  localPrice:{
+  localPrice: {
     type: String,
     required: true,
   },
-  internationalPrice:{
+  internationalPrice: {
     type: String,
     required: true,
   },
-  registrationOnClosed:{
+  registrationOnClosed: {
     type: String,
     required: true,
   },
-  batchType:{
+  batchType: {
     type: String,
     required: true,
+    enum:["weekend","weekdays"]
   },
-  openBatch:{
+  openBatch: {
     type: Boolean,
-    default: false,
+    default: true,
   },
-  avaliableSeats:{
+  avaliableSeats: {
     type: Number,
     required: true,
   },
-  classType:{
+  classType: {
     type: String,
     required: true,
-    enum:["physical","online"]
-  }
-})
+    enum: ["physical", "online"],
+  },
+  onStartDate: {
+    type: String,
+    required: true,
+  },
+  onWorking: {
+    type: Array,
+    default: ["1", "2"], //1 local , 2 international
+  },
+  batchTiming:{
+    type:Array,
+    required:true
+  }//format: HH:MM:SS a,Days: mon,wen,tue,thu,fri,sat,sun
+});
 
-const Courses = mongoose.model("course",CourseSchema)
-const Modules = mongoose.model("module",ModuleSchema)
-const Batchs = mongoose.model("batch",BatchSchema)
+const Courses = mongoose.model("course", CourseSchema);
+const Modules = mongoose.model("module", ModuleSchema);
+const Batchs = mongoose.model("batch", BatchSchema);
 
-export {Courses,Modules,Batchs}
+export { Courses, Modules, Batchs };

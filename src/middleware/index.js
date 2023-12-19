@@ -12,6 +12,7 @@ const upload = multer({
 
 const checkToken = async (req, res, next) => {
   let token = req.headers.authorization;
+  console.log(req.headers)
   if (token) {
     try {
       token = token.split(" ")[1];
