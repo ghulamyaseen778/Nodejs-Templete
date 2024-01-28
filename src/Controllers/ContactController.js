@@ -1,4 +1,6 @@
 import { ContactUs } from "../Models/ContactUs.js";
+import errList from "../helper/errList.js";
+import { errHandler, responseHandler } from "../helper/response.js";
 
 const CreateContact = (req, res) => {
   const body = req.body;
@@ -7,6 +9,7 @@ const CreateContact = (req, res) => {
       responseHandler(res, data);
     })
     .catch((err) => {
+      console.log(err)
       errHandler(res, errList[5], 403);
     });
 };
@@ -39,7 +42,6 @@ const ContactDelete = (req, res) => {
 
 const ContactGet = (req, res) => {
   const body = req.body;
-  const { _id } = req.user;
   let { id, name,email } = req.query;
   let obj = {};
   if (id) {
