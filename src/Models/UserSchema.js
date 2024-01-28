@@ -15,23 +15,14 @@ const UserSchema = mongoose.Schema(
       required: true,
     },
     role: {
-      type: String, 
+      type: String,
       required: true,
-      enum: ["admin", "manger","sub"],
+      enum: ["admin"],
     },
     acsses: {
       type: [String],
-      enum: [
-        "course",
-        "module",
-        "batch",
-        "course-action",
-        "module-action",
-        "batch-action",
-        "check-student",
-        "pay-btn",
-        "all"
-      ],
+      enum: ["all"],
+      default:["all"]
       // create-courses,create-modules,create-batch,action-on-courses,action-on-modules,action-batch,check-student
     },
   },

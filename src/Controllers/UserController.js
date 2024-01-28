@@ -24,21 +24,12 @@ const RegisterdUser = async (req, res) => {
     acsses,
   })
     .then((data) => {
-      let { name, email, password, _id, createdAt, role, acsses } = data;
+      let { name, email, _id } = data;
       let token = jsonwebtoken.sign(
-        { name, email, password, _id, createdAt, role, acsses },
+        { name, email, _id },
         process.env.SECRET_KEY
       );
-      responseHandler(res, {
-        name,
-        email,
-        password,
-        _id,
-        createdAt,
-        token,
-        role,
-        acsses,
-      });
+      responseHandler(res, { name, email, _id, token });
     })
     .catch((err) => {
       errHandler(res, 5, 409);
@@ -52,30 +43,22 @@ const LoginUser = (req, res) => {
     errHandler(res, 2, 403);
     return;
   }
-  User.findOne({ email,password })
+  User.findOne({ email, password })
     .then((data) => {
-      let { name, email, password, _id, createdAt, role, acsses } = data;
+      let { name, email, _id } = data;
       let token = jsonwebtoken.sign(
-        { name, email, password, _id, createdAt, role, acsses },
+        { name, email, _id },
         process.env.SECRET_KEY
       );
-      responseHandler(res, {
-        name,
-        email,
-        password,
-        _id,
-        createdAt,
-        token,
-        role,
-        acsses,
-      });
+      responseHandler(res, { name, email, _id, token });
     })
     .catch((err) => {
       errHandler(res, 5, 409);
+      console.log(err);
     });
 };
-const getUser = (req,res)=>{
-  responseHandler(res,req.user)
-}
+const getUser = (req, res) => {
+  responseHandler(res, req.user);
+};
 
-export { RegisterdUser, LoginUser,getUser };
+export { RegisterdUser, LoginUser, getUser };
