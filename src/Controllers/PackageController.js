@@ -46,7 +46,7 @@ const PackageDelete = (req, res) => {
 
 const PackageGet = (req, res) => {
   const body = req.body;
-  let { id, name, email } = req.query;
+  let { id, name,slug } = req.query;
   let obj = {};
   if (id) {
     obj._id = id;
@@ -54,8 +54,8 @@ const PackageGet = (req, res) => {
   if (name) {
     obj.name = name;
   }
-  if (email) {
-    obj.email = email;
+  if (slug) {
+    obj.slug = slug;
   }
   Package.find(obj)
     .then((data) => {
