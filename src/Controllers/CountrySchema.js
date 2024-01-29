@@ -31,7 +31,7 @@ const CountryDelete = (req, res) => {
   const body = req.body;
   const { _id } = req.user;
   let { id } = req.query;
-  Country.findByIdAndUpdate(id)
+  Country.findByIdAndDelete(id)
     .then((data) => {
       responseHandler(res, data);
     })
