@@ -12,7 +12,11 @@ import {
   CreateContact,
   UpdateContact,
 } from "../Controllers/ContactController.js";
-import { CountryDelete, CountryGet, CreateCountry } from "../Controllers/CountrySchema.js";
+import {
+  CountryDelete,
+  CountryGet,
+  CreateCountry,
+} from "../Controllers/CountrySchema.js";
 import {
   BlogCreate,
   BlogDelete,
@@ -42,7 +46,11 @@ route
   .put(UpdateContact)
   .delete(ContactDelete);
 
-route.route("/country").get(CountryGet).post(CreateCountry).delete(CountryDelete)
+route
+  .route("/country")
+  .get(CountryGet)
+  .post(CreateCountry)
+  .delete(checkToken,CountryDelete);
 route
   .route("/blog")
   .get(BlogGet)
