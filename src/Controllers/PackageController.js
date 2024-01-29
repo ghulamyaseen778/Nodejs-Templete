@@ -57,7 +57,7 @@ const PackageGet = (req, res) => {
   if (email) {
     obj.email = email;
   }
-  Package.find(id)
+  Package.find(obj)
     .then((data) => {
       responseHandler(res, data);
     })
