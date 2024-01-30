@@ -57,6 +57,10 @@ const PackageSchema = mongoose.Schema({
     type:String,
     default:""
   },
+  price:{
+    type:String,
+    required:true
+  }
 });
 
 const Package = mongoose.model("package",PackageSchema)
