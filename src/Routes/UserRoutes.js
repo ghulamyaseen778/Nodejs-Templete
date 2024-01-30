@@ -32,6 +32,11 @@ import {
   TestimonialDelete,
   TestimonialGet,
 } from "../Controllers/TestimonialController.js";
+import {
+  CreateGallery,
+  DeleteGallery,
+  GetGallery,
+} from "../Controllers/GalleryController.js";
 
 const route = express.Router();
 
@@ -50,7 +55,7 @@ route
   .route("/country")
   .get(CountryGet)
   .post(CreateCountry)
-  .delete(checkToken,CountryDelete);
+  .delete(checkToken, CountryDelete);
 route
   .route("/blog")
   .get(BlogGet)
@@ -67,5 +72,11 @@ route
   .get(TestimonialGet)
   .post(checkToken, CreateTestimonial)
   .delete(checkToken, TestimonialDelete);
+
+route
+  .route("/gallery")
+  .get(GetGallery)
+  .post(checkToken, CreateGallery)
+  .delete(checkToken, DeleteGallery);
 
 export default route;

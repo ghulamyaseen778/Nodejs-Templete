@@ -17,7 +17,7 @@ const checkToken = async (req, res, next) => {
     try {
       token = token.split(" ")[1];
       token = jwt.verify(token, process.env.SECRET_KEY);
-      req.user = await User.findById({ _id: token._id });
+      req.user = await User.findById({ _id: token._id,role:"admin" });
       next();
     } catch (err) {
       errHandler(res, "Unautorized User", 404);
